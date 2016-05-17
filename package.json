@@ -1,0 +1,19 @@
+{
+  "name": "budgeteer-landing",
+  "version": "1.0.0",
+  "description": "Landing page for budgeteer app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joefiorini/budgeteer-landing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joefiorini/budgeteer-landing/issues"
+  },
+  "homepage": "https://github.com/joefiorini/budgeteer-landing#readme"
+}
