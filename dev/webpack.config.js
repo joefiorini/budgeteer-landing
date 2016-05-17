@@ -1,15 +1,23 @@
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import {resolve, join} from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
 require('dotenv').config();
 
+const {HOST = '0.0.0.0', PORT = 8000} = process.env;
+
 module.exports = {
-  entry: './index.js',
+  context: resolve(join(__dirname, '../src')),
+  entry:
+  { app: ['./'],
+  },
   target: 'web',
   devtool: 'source-map',
-  output: {
-    path: 'dist',
+  output:
+  { path: '/src/budgeteer-landing/dist',
     filename: 'bundle.js',
-    hash: true
+    hash: true,
+    publicPath: `http://${HOST}:${PORT}/`
   },
   module: {
     loaders: [
@@ -17,15 +25,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.EnvironmentPlugin([
-      "PLAID_ENV",
-      "PLAID_CLIENT_NAME",
-      "PLAID_KEY",
-      "PLAID_PRODUCT",
-    ]),
-    new HtmlWebpackPlugin({
-      title: 'Credit Utilization Monitor',
-      template: './template.html'
-    })
-  ]
+    new webpack.EnvironmentPlugin(process.env),
+    new HtmlWebpackPlugin(),
+  ],
+  devServer: {
+    url: `http://${HOST}:${PORT}`,
+    host: HOST,
+    port: PORT
+  }
 };
