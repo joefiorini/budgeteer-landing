@@ -4,7 +4,8 @@
   "description": "Landing page for budgeteer app",
   "main": "index.js",
   "scripts": {
-    "start": "cd dev && webpack-dev-server --config ./webpack.config.js",
+    "start": "node dev/boot.js",
+    "start:prod": "node server/boot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
