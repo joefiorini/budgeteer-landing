@@ -1,30 +1,21 @@
-import webpack from 'webpack';
-import config from './webpack.config';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import { addMiddleware, runServer } from '../server';
+import WebpackIsomorphicTools from 'webpack-isomorphic-tools';
+import isomorphicToolsConfig from './webpack-isomorphic-tools-config';
+import dotenv from 'dotenv';
+import { resolve } from 'path';
 
-config.entry.app.unshift(
-  `webpack-hot-middleware/client?${config.output.publicPath}/__webpack_hmr&reload=1`,
-  'webpack/hot/only-dev-server'
-);
+const basePath = resolve(__dirname, '../src');
 
-config.plugins.unshift(new webpack.HotModuleReplacementPlugin());
+dotenv.config();
 
-const compiler = webpack(config);
+const webpackIsomorphicTools = new WebpackIsomorphicTools(isomorphicToolsConfig)
+  .development()
+  .server(basePath, () => {
+    const { publicPath, assetsByChunkName } = require('../src/webpack-stats.json');
 
-addMiddleware(webpackDevMiddleware(compiler,
-                                   { publicPath: `${config.output.publicPath}/`
-                                   }));
-
-addMiddleware(webpackHotMiddleware(compiler,
-                                   { log: console.log
-                                   , path: '/__webpack_hmr'
-                                   , heartbeat: 10 * 1000
-                                   }));
-
-runServer(
-  { host: config.devServer.host
-  , port: config.devServer.port
-  });
-
+    require('../server').runServer( // eslint-disable-line global-require
+      { host: process.env.HOST || 'localhost'
+      , port: process.env.PORT || 8000
+      , webpackIsomorphicTools
+      });
+    }
+  );

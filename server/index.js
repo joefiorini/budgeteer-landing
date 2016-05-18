@@ -7,7 +7,28 @@ import routes from '../src/routes';
 
 const server = new Express();
 
-const run = (req, res) => {
+const findJsAssets = ({ javascript }) => assets.filter(asset => asset.endsWith('.js'));
+const pluckStyles = ({ assets }) => Object.keys(assets).map(assetKey => assets[assetKey]._style)
+
+const template = ({ host, port, assets }) => content => `
+<html>
+  <head>
+    <style>
+      ${pluckStyles(assets)}
+    </style>
+  </head>
+  <body>
+    <main>${content}</main>
+    <script src="${assets.javascript.app}"></script>
+  </body>
+</html>
+`;
+
+const run = ({ renderTemplate, webpackIsomorphicTools }) => (req, res) => {
+  if (webpackIsomorphicTools.options.development) {
+    webpackIsomorphicTools.refresh();
+  }
+
   match(
     { routes
     , location: req.url
@@ -21,7 +42,7 @@ const run = (req, res) => {
         // You can also check renderProps.components or renderProps.routes for
         // your "not found" component or route respectively, and send a 404 as
         // below, if you're using a catch-all route.
-        res.status(200).send(renderToString(<RouterContext {...renderProps} />));
+        res.status(200).send(renderTemplate(renderToString(<RouterContext {...renderProps} />)));
       } else {
         res.status(404).send('Not found');
       }
@@ -29,10 +50,15 @@ const run = (req, res) => {
   );
 };
 
-export const runServer = ({ host, port }) => {
+export const runServer = (
+  { host
+  , port
+  , webpackIsomorphicTools
+  }) => {
   server.listen(port, host, () => console.log(`Running on port ${port}`));
+  const renderTemplate = template({ host, port, assets: webpackIsomorphicTools.assets() });
 
-  server.get('*', run);
+  server.get('*', run({ renderTemplate, webpackIsomorphicTools }));
 };
 
 export const addMiddleware = middleware => server.use(middleware);

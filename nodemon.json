@@ -1,0 +1,12 @@
+{
+  "ignore": [
+    ".git",
+    "node_modules"
+  ],
+  "watch": [
+    "package.json",
+    "dev/*.js",
+    "server/*.js",
+    "src/server.js"
+  ]
+}
