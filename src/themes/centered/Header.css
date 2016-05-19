@@ -1,0 +1,29 @@
+:global {
+  * {
+    all: initial;
+  }
+}
+:root {
+  --logoSize: 180px;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  height: var(--logoSize);
+  align-items: center;
+}
+
+.logo {
+  composes: wireframe from '../../utils/wireframe.css';
+}
+
+.title {
+  composes: wireframe from '../../utils/wireframe.css';
+}
+
+.headline {
+  composes: wireframe from '../../utils/wireframe.css';
+  max-width: calc(100% * (600 / 1130));
+}

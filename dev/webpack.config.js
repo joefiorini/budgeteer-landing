@@ -2,6 +2,7 @@ import { resolve, join } from 'path';
 import cssnext from 'postcss-cssnext';
 import autoreset from 'postcss-autoreset';
 import lost from 'lost';
+import pxtorem from 'postcss-pxtorem';
 import webpack from 'webpack';
 import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import isomorphicToolsConfig from './webpack-isomorphic-tools-config';
@@ -53,5 +54,5 @@ module.exports = {
     , port: BUILD_SERVER_PORT
     }
   , postcss:
-  () => [ cssnext, autoreset({ reset: 'initial' }), lost ]
+  () => [ cssnext, lost, pxtorem({ propWhiteList: [] }) ]
 };

@@ -10,12 +10,12 @@ const server = new Express();
 const findJsAssets = ({ javascript }) => assets.filter(asset => asset.endsWith('.js'));
 const pluckStyles = ({ assets }) => Object.keys(assets).map(assetKey => assets[assetKey]._style)
 
+//         <style>
+//         ${pluckStyles(assets)}
+// </style>
 const template = ({ host, port, assets }) => content => `
 <html>
   <head>
-    <style>
-      ${pluckStyles(assets)}
-    </style>
   </head>
   <body>
     <main>${content}</main>
