@@ -1,8 +1,3 @@
-:global {
-  * {
-    all: initial;
-  }
-}
 :root {
   --logoSize: 180px;
 }
@@ -11,7 +6,6 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
-  height: var(--logoSize);
   align-items: center;
 }
 
@@ -25,5 +19,5 @@
 
 .headline {
   composes: wireframe from '../../utils/wireframe.css';
-  max-width: calc(100% * (600 / 1130));
+  max-width: calc(100% * (460 / 1120));
 }

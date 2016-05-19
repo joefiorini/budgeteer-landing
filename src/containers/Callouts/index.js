@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default ({styles}) => {
+export default ({theme}) => {
   return (
-      <section className={styles.container}>Callouts</section>
+      <section className={theme.container}>Callouts</section>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default ({styles}) => {
+export default ({theme}) => {
   return (
-      <section className={styles.container}>Call To Action</section>
+      <section className={theme.container}>Call To Action</section>
   );
 };

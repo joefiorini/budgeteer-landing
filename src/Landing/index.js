@@ -7,10 +7,10 @@ export default () => {
   const theme = themes.centered;
   return (
     <section className={theme.container}>
-      <Header styles={theme.header} />
-      <Benefits styles={theme.benefits} />
-      <CallToAction styles={theme.callToAction} />
-      <Callouts styles={theme.callouts} />
+      <Header theme={theme.header} />
+      <Benefits theme={theme.benefits} />
+      <CallToAction theme={theme.callToAction} />
+      <Callouts theme={theme.callouts} />
     </section>
   );
 }
