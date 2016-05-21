@@ -1,7 +1,51 @@
+.list {
+  counter-reset: li;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.item {
+  display: flex;
+  flex-flow: column wrap;
+  list-style: none;
+  height: 142px;
+
+  /* &:before { */
+  /*   flex: 0 0 57%; */
+  /*   content: counter(li); */
+  /*   counter-increment: li; */
+  /*   border-radius: 50%; */
+  /*   box-sizing: border-box; */
+  /*   width: 63px; */
+  /*   margin-right: 8px; */
+  /*   padding: 4px; */
+  /*   border-top: 2px solid #666; */
+  /*   color: #fff; */
+  /*   background: #666; */
+  /*   font-weight: bold; */
+  /*   text-align: center; */
+  /* } */
+}
+
+.bullet {
+  font-size: calc(38 / 16 * 1em);
+  fill: rebeccapurple;
+}
+
+.counter {
+  stroke: white;
+}
+
 .title {
-  
+  composes: feature from '../../utils/text-styles.css';
 }
 
 .description {
-  
+  composes: feature-detail from '../../utils/text-styles.css';
+}
+.title,
+.description {
+    flex: 0 0 50%;
+    width: 100%;
+    margin: 0;
 }

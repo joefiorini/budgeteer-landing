@@ -16,6 +16,7 @@ const pluckStyles = ({ assets }) => Object.keys(assets).map(assetKey => assets[a
 const template = ({ host, port, assets }) => content => `
 <html>
   <head>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300|Muli|Kameron' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <main>${content}</main>

@@ -1,4 +1,11 @@
 .container {
+  composes: large from './grid.css';
   display: flex;
-  align-items: center;
+  text-align: left;
+}
+
+.benefit {
+  &:nth-child(even) {
+    text-align: right;
+  }
 }

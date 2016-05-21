@@ -1,0 +1,12 @@
+:root {
+  --full-width: 1120;
+  --ratio: 1.61803398875;
+}
+
+.medium {
+  max-width: calc((var(--full-width) / (var(--ratio) * 1.6)) * 1px);
+}
+
+.large {
+  max-width: calc((var(--full-width) / var(--ratio) * 1.2) * 1px);
+}

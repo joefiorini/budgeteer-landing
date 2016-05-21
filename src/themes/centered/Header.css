@@ -3,10 +3,10 @@
 }
 
 .container {
+  composes: large from './grid.css';
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
-  align-items: center;
 }
 
 .logo {
@@ -19,5 +19,5 @@
 
 .headline {
   composes: wireframe from '../../utils/wireframe.css';
-  max-width: calc(100% * (460 / 1120));
+  composes: medium from './grid.css';
 }

@@ -1,0 +1,19 @@
+:root {
+  --serif-font: Kameron;
+  --sans-font: Muli;
+}
+
+.feature {
+  font-family: var(--sans-font);
+  font-size: calc(24 / 16 * 1em);
+}
+
+.feature-detail {
+  font-family: var(--serif-font);
+  font-size: calc(18 / 16 * 1em);
+}
+
+.number-detail {
+  font-family: var(--serif-font);
+  font-size: calc(38 / 16 * 1em);
+}
