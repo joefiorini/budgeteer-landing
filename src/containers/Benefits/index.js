@@ -20,7 +20,7 @@ const benefits =
   ];
 
 const Benefit = ({ title, description, counter, className }) => (
-  <li key={title} className={className}>
+  <li className={className}>
     <svg viewBox="0 0 63 63" width="63" height="63">
       <circle className={styles.bullet} cx="31" cy="31" r="31" />
       <text x="50%" y="50%" textAnchor="middle" className={styles.counter}>{counter}</text>
@@ -43,7 +43,7 @@ export default function Benefits({ theme }) {
   return (
     <section className={theme.container}>
       <ol className={styles.list}>
-        {benefits.map((benefit, index) => <Benefit className={classes} {...benefit} counter={index + 1} />)}
+        {benefits.map((benefit, index) => <Benefit key={benefit.title} className={classes} {...benefit} counter={index + 1} />)}
       </ol>
     </section>
   );
