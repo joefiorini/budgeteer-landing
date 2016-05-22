@@ -4,7 +4,7 @@
 }
 
 .medium {
-  max-width: calc((var(--full-width) / (var(--ratio) * 1.6)) * 1px);
+  max-width: calc((var(--full-width) / (var(--ratio) * 1.4)) * 1px);
 }
 
 .large {

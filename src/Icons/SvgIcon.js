@@ -8,6 +8,7 @@ export default opts => svg => {
            height={height}
            viewBox={viewBox}
            dangerouslySetInnerHTML={{ __html: content }}
+           {...props}
           />);
   Component.displayName = opts.displayName;
 

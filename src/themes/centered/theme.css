@@ -1,9 +1,10 @@
 @lost flexbox flex;
 
-.container {
-  lost-center: 1120px flex;
-  lost-flex-container: column;
-  lost-align: center flex;
-  align-items: center;
+:global(body) {
+  margin: 0;
   text-align: center;
+}
+
+.wrapper {
+  lost-center: 1120px flex;
 }
