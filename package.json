@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npm prune",
-    "build": "npm run build:clean && webpack --config dev/webpack.boot.js",
-    "start": "npm install && concurrently --kill-others \"npm run build-server\" \"npm run dev-server\"",
+    "build": "npm run build:clean && BABEL_ENV=frontend $(npm bin)/webpack --config dev/webpack.config.babel.js",
+    "start": "nodemon --exec npm run start:dev",
+    "start:dev": "npm install && concurrently --kill-others \"npm run build-server\" \"npm run dev-server\"",
     "start:prod": "node server/boot.js",
     "build:clean": "rm -rf dist/",
-    "build-server": "node dev/webpack.boot.js",
-    "dev-server": "node dev/boot.js",
+    "build-server": "BABEL_ENV=frontend node dev/webpack.boot.js",
+    "dev-server": "BABEL_ENV=backend node dev/boot.js",
     "test": "eslint"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "babel-plugin-transform-class-properties": "^6.9.0",
     "babel-plugin-transform-export-extensions": "^6.8.0",
     "babel-plugin-transform-function-bind": "^6.8.0",
+    "babel-plugin-webpack-loaders": "^0.5.0",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
@@ -55,11 +57,14 @@
     "postcss-pxtorem": "^3.3.1",
     "react-hot-loader": "^3.0.0-beta.1",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0",
+    "svg-loader": "0.0.2",
+    "svg-react-loader": "^0.3.3",
+    "svgo-loader": "^1.1.0",
+    "wait-on": "^1.5.2",
+    "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.10.0",
-    "webpack-isomorphic-tools": "^2.2.50"
+    "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
     "classnames": "^2.2.5",

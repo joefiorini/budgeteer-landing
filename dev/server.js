@@ -1,21 +1,37 @@
-import WebpackIsomorphicTools from 'webpack-isomorphic-tools';
-import isomorphicToolsConfig from './webpack-isomorphic-tools-config';
 import dotenv from 'dotenv';
-import { resolve } from 'path';
+import { resolve, join } from 'path';
+import { readFileSync } from 'fs';
+import waitOn from 'wait-on';
+import config from '../server/webpack.config.babel';
 
 const basePath = resolve(__dirname, '../src');
+const statsPath = resolve(join(basePath, 'webpack-stats.json'));
 
 dotenv.config();
 
-const webpackIsomorphicTools = new WebpackIsomorphicTools(isomorphicToolsConfig)
-  .development()
-  .server(basePath, () => {
-    const { publicPath, assetsByChunkName } = require('../src/webpack-stats.json');
+let running = false;
 
-    require('../server').runServer( // eslint-disable-line global-require
+waitOn(
+  { resources: [ statsPath ]
+  },
+  err => {
+    if (err) {
+      console.error('Unkown error while waiting for webpack-stats.json');
+      console.error(err);
+      process.exit(1);
+    }
+
+    const stats = readFileSync(statsPath, { encoding: 'utf-8' });
+
+    if (running) return;
+
+    const { assetsByChunkName } = JSON.parse(stats);
+
+    require('../server').runServer(
       { host: process.env.HOST || 'localhost'
       , port: process.env.PORT || 8000
-      , webpackIsomorphicTools
+      , assets: assetsByChunkName.app
       });
-    }
-  );
+
+    running = true;
+  });

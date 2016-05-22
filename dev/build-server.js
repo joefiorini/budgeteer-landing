@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import Express from 'express';
-import config from './webpack.config';
+import config from './webpack.config.babel';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 

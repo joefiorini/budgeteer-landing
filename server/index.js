@@ -20,16 +20,12 @@ const template = ({ host, port, assets }) => content => `
   </head>
   <body>
     <main>${content}</main>
-    <script src="${assets.javascript.app}"></script>
+    <script src="http://localhost:8001/${assets.filter(file => file.endsWith('.js'))}"></script>
   </body>
 </html>
 `;
 
-const run = ({ renderTemplate, webpackIsomorphicTools }) => (req, res) => {
-  if (webpackIsomorphicTools.options.development) {
-    webpackIsomorphicTools.refresh();
-  }
-
+const run = ({ renderTemplate }) => (req, res) => {
   match(
     { routes
     , location: req.url
@@ -54,12 +50,12 @@ const run = ({ renderTemplate, webpackIsomorphicTools }) => (req, res) => {
 export const runServer = (
   { host
   , port
-  , webpackIsomorphicTools
+  , assets
   }) => {
   server.listen(port, host, () => console.log(`Running on port ${port}`));
-  const renderTemplate = template({ host, port, assets: webpackIsomorphicTools.assets() });
+  const renderTemplate = template({ host, port, assets });
 
-  server.get('*', run({ renderTemplate, webpackIsomorphicTools }));
+  server.get('*', run({ renderTemplate, assets }));
 };
 
 export const addMiddleware = middleware => server.use(middleware);
