@@ -1,2 +1,14 @@
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: #649334;
+  justify-content: space-around;
+  height: 237px;
+}
+
 .callout {
+  font-family: Lato;
+  font-weight: bold;
+  font-size: 32px;
+  color: white;
 }

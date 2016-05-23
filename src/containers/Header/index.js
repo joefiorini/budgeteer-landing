@@ -10,7 +10,9 @@ export default ({ theme }) => {
         <Laptop />
       </section>
       <Logo />
-      <h2 className={theme.headline}>Finally, a budgeting app that works with YOUR pay schedule!</h2>
+      <h2 className={theme.headline}>
+        Finally, a budgeting app that works with YOUR pay schedule!
+      </h2>
     </section>
   );
-}
+};

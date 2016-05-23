@@ -17,17 +17,16 @@ const benefits =
   , { title: 'Communicate on your own schedule'
     , description: 'Flag items, leaves notes or questions for others to respond to when it’s convenient for them'
     }
+  , { title: 'Get paid again and repeat'
+    , description: 'Only budget when money comes in; a lot can happen in a month and allocating more often than that lets you respond to change more easily  flexible—fix me'
+    }
   ];
 
-const Benefit = ({ title, description, counter, className }) => (
-  <li className={className}>
-    <svg viewBox="0 0 63 63" width="63" height="63">
-      <circle className={styles.bullet} cx="31" cy="31" r="31" />
-      <text x="50%" y="50%" textAnchor="middle" className={styles.counter}>{counter}</text>
-    </svg>
-    <p className={styles.title}>{title}</p>
+const Benefit = ({ title, description, className }) => (
+  <article className={className}>
+    <h3 className={styles.title}>{title}</h3>
     <p className={styles.description}>{description}</p>
-  </li>
+  </article>
 );
 
 Benefit.propTypes =
@@ -42,9 +41,7 @@ export default function Benefits({ theme }) {
 
   return (
     <section className={theme.container}>
-      <ol className={styles.list}>
-        {benefits.map((benefit, index) => <Benefit key={benefit.title} className={classes} {...benefit} counter={index + 1} />)}
-      </ol>
+      {benefits.map(benefit => <Benefit key={benefit.title} className={classes} {...benefit} />)}
     </section>
   );
 }

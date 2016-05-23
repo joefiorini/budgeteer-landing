@@ -1,6 +1,7 @@
 import { resolve, join } from 'path';
 import cssnext from 'postcss-cssnext';
 import autoreset from 'postcss-autoreset';
+import values from 'postcss-modules-values';
 import lost from 'lost';
 import pxtorem from 'postcss-pxtorem';
 import webpack from 'webpack';
@@ -36,5 +37,5 @@ export default {
     // , new webpack.HotModuleReplacementPlugin()
     ]
   , postcss:
-  () => [ cssnext, lost, pxtorem({ propWhiteList: [] }) ]
+  () => [ cssnext, lost, pxtorem({ propWhiteList: [] }), values ]
 };
