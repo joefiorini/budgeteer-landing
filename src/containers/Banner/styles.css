@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+  overflow: hidden;
+}
+
+.outer {
+  background-color: #649334;
+}
+
+.callout {
+  font-family: Lato;
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+  z-index: 2;
+}
+
+.coin {
+  position: absolute;
+  height: 100%;
+  transform: rotate(-35deg);
+  width: auto;
+  & g {
+    fill: #B8E98646;
+  }
+}

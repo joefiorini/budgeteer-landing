@@ -1,0 +1,26 @@
+:root {
+  --button-color: #649334;
+}
+
+.heading {
+  font-family: Lato, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.button {
+  transition: background-color 50ms;
+  font-family: Lato, Helvetica, sans-serif;
+  cursor: pointer;
+  background-color: color(var(--button-color));
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  border: 0;
+  padding: 0.75em 1.25em;
+
+  &:hover {
+    background-color: color(var(--button-color) lightness(55%));
+  }
+}

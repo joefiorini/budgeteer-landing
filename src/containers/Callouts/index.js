@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function Callouts({ theme }) {
+export default function Callouts({ styles }) {
   return (
-    <section className={theme.container}>
+    <section className={styles}>
       <h4></h4>
     </section>
   );

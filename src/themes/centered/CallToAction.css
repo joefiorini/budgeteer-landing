@@ -1,3 +1,11 @@
 .container {
-  
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  height: 200px;
+}
+
+.heading {
+  composes: medium from './grid.css';
 }

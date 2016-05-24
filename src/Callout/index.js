@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react';
+import { object, string } from 'react/lib/ReactPropTypes';
 
-const { object, string } = PropTypes;
-
-export default function Callout({ theme, text }) {
+export default function Callout({ className, text }) {
   return (
-    <h4 className={theme.callout}>{text}</h4>
+    <h4 className={className}>{text}</h4>
   );
 }
 
 Callout.propTypes =
-{ theme: object
+{ className: string
 , text: string
 };
