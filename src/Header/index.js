@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { Logo, Smartphone, Laptop } from '../../Icons';
+import { Logo, Smartphone, Laptop } from '../Icons';
 
 const { object } = PropTypes;
 

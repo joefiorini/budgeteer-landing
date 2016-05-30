@@ -1,6 +1,6 @@
 import React from 'react';
 import { object } from 'react/lib/ReactPropTypes';
-import Callout from '../../Callout';
+import Callout from '../Callout';
 import { CoinDollar } from '../../Icons';
 import classnames from 'classnames';
 import styles from './styles.css';

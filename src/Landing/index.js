@@ -1,6 +1,9 @@
 import React from 'react';
 import * as themes from '../themes';
-import { Header, Benefits, CallToAction, Banner } from '../containers';
+import Header from '../Header';
+import Benefits from './Benefits';
+import CallToAction from './CallToAction';
+import Banner from './Banner';
 
 export default () => {
   const theme = themes.centered;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import Layout from './layout';
+import Layout from './Layout';
 import Landing from './Landing';
 import Capture from './Capture';
 
