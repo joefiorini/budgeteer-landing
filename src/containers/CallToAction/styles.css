@@ -7,4 +7,5 @@
 
 .button {
   composes: call-to-action from '../../buttons.css';
+  text-decoration: none;
 }

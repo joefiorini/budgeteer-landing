@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { Logo, Smartphone, Laptop } from '../../Icons';
 
 export default ({ theme }) => {
   return (
     <section className={theme.container}>
-      <section className={theme.titleLine}>
+      <Link className={theme.titleLine} to="/">
         <h1 className={theme.title}>Budgeteer</h1>
         <Smartphone className={theme.icon} />
         <Laptop className={theme.icon} />
-      </section>
+      </Link>
       <Logo />
       <h2 className={theme.headline}>
         Finally, a budgeting app that works with YOUR pay schedule!
