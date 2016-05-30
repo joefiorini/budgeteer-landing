@@ -7,7 +7,7 @@ export default ({ theme }) => {
       <section className={theme.titleLine}>
         <h1 className={theme.title}>Budgeteer</h1>
         <Smartphone className={theme.icon} />
-        <Laptop />
+        <Laptop className={theme.icon} />
       </section>
       <Logo />
       <h2 className={theme.headline}>

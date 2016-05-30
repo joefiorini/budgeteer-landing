@@ -1,3 +1,6 @@
+@value colors: '../../colors.css';
+@value deemphasized from colors;
+
 :root {
   --logoSize: 180px;
 }
@@ -19,9 +22,10 @@
 }
 
 .title {
-  color: #828282;
+  color: deemphasized;
   font-family: Kameron, serif;
   font-size: 26px;
+  font-weight: 200;
   margin-right: auto;
 }
 
@@ -42,4 +46,10 @@
 
 .icon {
   margin-right: 10px;
+  height: 35px;
+  width: auto;
+
+  & g {
+    fill: deemphasized;
+  }
 }

@@ -3,14 +3,14 @@
 
   display: flex;
   flex-flow: column wrap;
-  height: 415px;
+  height: 435px;
   justify-content: space-between;
   margin-top: 35px;
   margin-bottom: 100px;
 }
 
 .benefit {
-  width: 550px;
+  width: 475px;
   text-align: left;
 
   &:nth-child(4) {
