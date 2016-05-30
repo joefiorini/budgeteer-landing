@@ -5,7 +5,7 @@ const { node } = PropTypes;
 
 export default function Layout({ children }) {
   return (
-    <section>
+    <section className={styles.container}>
       {children}
     </section>
   );

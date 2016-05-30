@@ -1,0 +1,31 @@
+:root {
+  --input-border-color: hsl(0,0%,59%);
+  --input-border-color--highlight: color(var(--input-border-color) lightness(40%));
+}
+
+.container {
+  display: flex;
+  composes: medium from '../../themes/centered/grid.css';
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.input {
+  border: solid thin var(--input-border-color);
+  font-family: Muli, Helvetica, sans-serif;
+  font-size: 24px;
+  padding: 16px 21px;
+
+  &::placeholder {
+    font-weight: 200;
+    font-style: italic;
+  }
+
+  &:-webkit-autofill {
+    border: solid thin var(--input-border-color--highlight);
+  }
+}
+.button {
+  composes: call-to-action from '../../buttons.css';
+  font-size: 24px;
+}

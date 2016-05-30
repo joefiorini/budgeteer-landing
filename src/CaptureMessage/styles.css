@@ -1,0 +1,14 @@
+.container {
+  text-align: left;
+}
+
+.header {
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.body {
+  font-family: Kameron;
+  font-size: 20px;
+}
