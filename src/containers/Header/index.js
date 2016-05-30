@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Logo, Smartphone, Laptop } from '../../Icons';
 
-export default ({ theme }) => {
+const { object } = PropTypes;
+
+export default function Header({ theme }) {
   return (
     <section className={theme.container}>
       <Link className={theme.titleLine} to="/">
@@ -16,4 +18,8 @@ export default ({ theme }) => {
       </h2>
     </section>
   );
-};
+}
+
+Header.propTypes =
+  { theme: object
+  };
