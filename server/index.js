@@ -7,6 +7,8 @@ import routes from '../src/routes';
 
 const server = new Express();
 
+global.optimizelyProps = {};
+
 const findJsAssets = ({ javascript }) => assets.filter(asset => asset.endsWith('.js'));
 const pluckStyles = ({ assets }) => Object.keys(assets).map(assetKey => assets[assetKey]._style)
 
@@ -17,6 +19,9 @@ const template = ({ host, port, assets }) => content => `
 <html>
   <head>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300|Muli|Kameron' rel='stylesheet' type='text/css'>
+  <script>
+    window.optimizelyProps = {};
+  </script>
   </head>
   <body>
     <main>${content}</main>

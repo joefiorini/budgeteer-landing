@@ -1,4 +1,9 @@
 import * as centered from '../themes/centered';
-// import left from '../themes/left';
+import * as left from '../themes/left';
 
-export { centered };
+const themes =
+  { centered
+  , left
+  };
+
+export default (query) => themes[query.theme || global.optimizelyProps.theme || process.env.DEFAULT_THEME];

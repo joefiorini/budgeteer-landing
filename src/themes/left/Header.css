@@ -1,34 +1,33 @@
-:root {
-  --logoSize: 180px;
-}
+@value colors: '../../colors.css';
+@value deemphasized from colors;
 
-.wireframe {
-  background-color: rebeccapurple;
+:root {
+  --logoSize: 125px;
 }
 
 .container {
-  lost-flex-container: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  height: var(--logoSize);
+  display: flex;
+  flex-flow: column wrap;
+  height: 205px;
 }
 
 .logo {
-  composes: wireframe;
-  width: var(--logoSize);
-  height: var(--logoSize);
-  margin-left: auto;
-  margin-right: 24px;
   flex: 0 0 100%;
+  order: 1;
+  width: auto;
+  height: var(--logoSize);
 }
 
 .title {
-  composes: wireframe;
-  height: calc(99.99% * 2/6);
-  flex: 0 0 50%;
 }
 
 .headline {
-  composes: wireframe;
-  flex: 0 0 50%;
+  order: 3;
+}
+
+.titleLink {
+  order: 2;
+}
+
+.icons {
 }

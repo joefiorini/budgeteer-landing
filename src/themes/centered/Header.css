@@ -6,10 +6,9 @@
 }
 
 .container {
+  composes: wrapper from './theme.css';
   display: flex;
-  background-color: #B6E37A;
-  background: linear-gradient(#B6E37A, #B8E986);
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
   text-align: center;
@@ -17,8 +16,11 @@
   width: 100%;
 }
 
-.logo {
-  composes: wireframe from '../../utils/wireframe.css';
+.titleLink {
+  margin-right: auto;
+  align-items: center;
+  height: 80px;
+  text-decoration: none;
 }
 
 .title {
@@ -26,7 +28,11 @@
   font-family: Kameron, serif;
   font-size: 26px;
   font-weight: 200;
-  margin-right: auto;
+}
+
+.logo,
+.headline {
+  flex: 1 0 100%;
 }
 
 .headline {
@@ -35,14 +41,6 @@
   line-height: 1.2;
   font-size: 32px;
   font-weight: 100;
-}
-
-.titleLine {
-  composes: wrapper from './theme.css';
-  width: 100%;
-  align-items: center;
-  height: 80px;
-  text-decoration: none;
 }
 
 .icon {

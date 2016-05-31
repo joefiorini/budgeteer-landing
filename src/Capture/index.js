@@ -1,12 +1,12 @@
 import React from 'react';
-import * as themes from '../themes';
-import { Header } from '../containers';
-import styles from './styles.css';
-import CaptureMessage from '../CaptureMessage';
+import Header from '../Header';
+import getTheme from '../themes';
+import CaptureMessage from './CaptureMessage';
 import CaptureForm from './Form';
 
-export default function Capture() {
-  const theme = themes.centered;
+export default function Capture({ location }) {
+  const theme = getTheme(location.query || {});
+
 
   return (
     <section className={theme.container}>
