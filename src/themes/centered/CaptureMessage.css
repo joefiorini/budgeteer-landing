@@ -1,9 +1,5 @@
 .container {
-  composes: wrapper from './theme.css';
-  composes: large from './grid.css';
-  height: 235px;
 }
 
 .header {
-  margin: auto 0 0;
 }

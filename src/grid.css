@@ -1,0 +1,16 @@
+:root {
+  --full-width: 1120;
+  --ratio: 1.61803398875;
+}
+
+.wrapper {
+  lost-center: 1120px flex;
+}
+
+.medium {
+  max-width: calc((var(--full-width) / (var(--ratio) * 1.4)) * 1px);
+}
+
+.large {
+  max-width: calc((var(--full-width) / var(--ratio) * 1.2) * 1px);
+}

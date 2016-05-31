@@ -1,5 +1,5 @@
 .container {
-  composes: wrapper from './theme.css';
+  composes: wrapper from '../../grid.css';
 
   display: flex;
   flex-flow: column nowrap;

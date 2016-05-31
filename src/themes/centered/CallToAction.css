@@ -7,5 +7,5 @@
 }
 
 .heading {
-  composes: medium from './grid.css';
+  composes: medium from '../../grid.css';
 }

@@ -1,8 +1,12 @@
 .container {
+  composes: wrapper from '../../grid.css';
+  composes: large from '../../grid.css';
   text-align: left;
+  height: 235px;
 }
 
 .header {
+  margin: auto 0 0;
   font-family: Lato;
   font-size: 24px;
   font-weight: 900;
