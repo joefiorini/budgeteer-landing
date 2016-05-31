@@ -7,18 +7,20 @@ import styles from './styles.css';
 const { object } = PropTypes;
 
 export default function Header({ theme }) {
+  const mergeStyles = className => classnames(theme[className], styles[className]);
+
   return (
     <section className={styles.background}>
-      <section className={classnames(theme.container, styles.container)}>
-        <Link className={theme.titleLink} to="/">
-          <h1 className={theme.title}>Budgeteer</h1>
+      <section className={mergeStyles('container')}>
+        <Link className={mergeStyles('titleLink')} to="/">
+          <h1 className={mergeStyles('title')}>Budgeteer</h1>
         </Link>
         <section className={theme.icons}>
-          <Smartphone className={theme.icon} />
-          <Laptop className={theme.icon} />
+          <Smartphone className={styles.icon} />
+          <Laptop className={styles.icon} />
         </section>
         <Logo className={theme.logo} />
-        <h2 className={theme.headline}>
+        <h2 className={mergeStyles('headline')}>
           Finally, a budgeting app that works with YOUR pay schedule!
         </h2>
       </section>

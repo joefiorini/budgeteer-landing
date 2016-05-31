@@ -17,17 +17,14 @@
 }
 
 .titleLink {
+  display: flex;
   margin-right: auto;
   align-items: center;
   height: 80px;
-  text-decoration: none;
 }
 
 .title {
-  color: deemphasized;
-  font-family: Kameron, serif;
-  font-size: 26px;
-  font-weight: 200;
+  margin: 0;
 }
 
 .logo,
@@ -37,18 +34,4 @@
 
 .headline {
   composes: medium from './grid.css';
-  font-family: Lato;
-  line-height: 1.2;
-  font-size: 32px;
-  font-weight: 100;
-}
-
-.icon {
-  margin-right: 10px;
-  height: 35px;
-  width: auto;
-
-  & g {
-    fill: deemphasized;
-  }
 }
