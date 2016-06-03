@@ -1,6 +1,6 @@
 @lost flexbox flex;
 
-:global(.body) {
+.main {
   margin: 0;
   text-align: center;
 }
