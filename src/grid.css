@@ -4,7 +4,12 @@
 }
 
 .wrapper {
-  lost-center: 1120px flex;
+  display: flex;
+  box-sizing: border-box;
+  flex-flow: row wrap;
+  max-width: calc(var(--full-width) * 1px);
+  margin: 0 auto;
+  padding: 0 12px;
 }
 
 .medium {

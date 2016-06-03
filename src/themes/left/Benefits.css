@@ -1,5 +1,19 @@
 .container {
+  composes: wrapper from '../../grid.css';
+
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: space-around;
+  align-items: center;
+
+  min-height: 440px;
 }
 
 .benefit {
+  flex: 0 1 45%;
+
+  &:last-child {
+    flex-basis: 55%;
+  }
 }

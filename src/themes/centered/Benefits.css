@@ -10,8 +10,13 @@
 }
 
 .benefit {
-  width: 475px;
+  width: 425px;
   text-align: left;
+
+  &:nth-child(4),
+  &:nth-child(5) {
+    align-self: flex-end;
+  }
 
   &:nth-child(4) {
     margin-top: 72px;

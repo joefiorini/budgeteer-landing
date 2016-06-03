@@ -3,6 +3,8 @@
 }
 
 .container {
+  composes: wrapper from '../../grid.css';
+
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
