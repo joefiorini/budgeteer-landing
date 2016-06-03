@@ -11,7 +11,7 @@ export default function Landing({ location }) {
   const theme = getTheme(location.query || {});
 
   return (
-    <section className={theme.container}>
+    <section className={theme.main}>
       <Header theme={theme.header} />
       <Benefits theme={theme.benefits} />
       <Banner theme={theme.banner} />
