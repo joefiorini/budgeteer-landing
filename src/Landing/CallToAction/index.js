@@ -15,7 +15,7 @@ export default function CallToAction({ theme }) {
       </h3>
       <Link
         to="/sign-up"
-        className={styles.button}
+        className={classnames(theme.button, styles.button)}
       >
         Sign Me Up!
       </Link>

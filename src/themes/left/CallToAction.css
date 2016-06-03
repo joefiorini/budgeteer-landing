@@ -1,5 +1,11 @@
 .container {
+  margin-top: 50px;
+  text-align: center;
 }
 
 .heading {
+  display: none;
+}
+
+.button {
 }

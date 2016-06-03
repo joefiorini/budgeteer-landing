@@ -14,7 +14,7 @@ export default function Landing({ location }) {
     <section className={theme.main}>
       <Header theme={theme.header} />
       <Benefits theme={theme.benefits} />
-      <Banner theme={theme.banner} />
+      <Banner theme={theme.banner} callouts={theme.callouts}/>
       <CallToAction theme={theme.callToAction} />
     </section>
   );

@@ -1,6 +1,10 @@
 .container {
+  composes: wrapper from '../../grid.css';
   position: relative;
   overflow: hidden;
+
+  flex-flow: column nowrap;
+  justify-content: space-around;
 }
 
 .outer {

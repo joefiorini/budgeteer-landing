@@ -2,14 +2,9 @@
   composes: wrapper from '../../grid.css';
 
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
   height: 200px;
 }
 
 .callout {
-  font-family: Lato;
-  font-weight: bold;
   font-size: 32px;
-  color: white;
 }

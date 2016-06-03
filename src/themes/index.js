@@ -6,4 +6,5 @@ const themes =
   , left
   };
 
-export default (query) => themes[query.theme || global.optimizelyProps.theme || process.env.DEFAULT_THEME];
+export default (query) =>
+  themes[query.theme || global.optimizelyProps.theme || process.env.DEFAULT_THEME];

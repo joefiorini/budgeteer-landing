@@ -1,3 +1,6 @@
+import callouts from './callouts';
+
+export { callouts };
 export * from './theme.css';
 export * as header from './Header.css';
 export * as benefits from './Benefits.css';
