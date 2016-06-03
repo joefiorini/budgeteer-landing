@@ -62,6 +62,3 @@ export const runServer = (
 
   server.get('*', run({ renderTemplate, assets }));
 };
-
-export const addMiddleware = middleware => server.use(middleware);
-

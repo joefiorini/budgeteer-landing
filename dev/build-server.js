@@ -3,6 +3,8 @@ import Express from 'express';
 import config from './webpack.config.babel';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import { resolve, join } from 'path';
+import { writeFileSync } from 'fs';
 
 const { host, port } = config.devServer;
 
@@ -21,26 +23,16 @@ app.use(webpackHotMiddleware(compiler));
 
 const { HOST, PORT } = process.env;
 
+const statsPath = resolve(join(__dirname, '..', 'src', 'webpack-stats.json'));
+const writeStatsFile = stats =>
+        writeFileSync(statsPath, JSON.stringify(stats.toJson()), { encoding: 'utf-8' });
+
+compiler.plugin('done', writeStatsFile);
+
 app.listen(port, err => {
   if (err) {
     console.error(err);
   } else {
-    console.info('==> 🚧  Webpack developments sserver listening on port %s', port);
+    console.info('==> 🚧  Webpack development server listening on port %s', port);
   }
 });
-/* let running = false;
- * 
- * compiler.plugin('done',
- *                 stats => {
- *                   if (running) return;
- * 
- *                   const { assetsByChunkName } = stats.toJson();
- * 
- *                   runServer(
- *                     { host: config.devServer.host
- *                     , port: config.devServer.port
- *                     , assets: assetsByChunkName.app
- *                     });
- * 
- *                   running = true;
- *                 });*/

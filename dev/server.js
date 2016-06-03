@@ -3,6 +3,7 @@ import { resolve, join } from 'path';
 import { readFileSync } from 'fs';
 import waitOn from 'wait-on';
 import config from '../server/webpack.config.babel';
+import { runServer } from '../server';
 
 const basePath = resolve(__dirname, '../src');
 const statsPath = resolve(join(basePath, 'webpack-stats.json'));
@@ -27,7 +28,7 @@ waitOn(
 
     const { assetsByChunkName } = JSON.parse(stats);
 
-    require('../server').runServer(
+    runServer(
       { host: process.env.HOST || 'localhost'
       , port: process.env.PORT || 8000
       , assets: assetsByChunkName.app

@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import StatsPlugin from 'stats-webpack-plugin';
 import config from '../server/webpack.config.babel';
 
 const { HOST = '0.0.0.0', BUILD_SERVER_PORT = 8001 } = process.env;
@@ -20,6 +21,7 @@ export default {
   , plugins:
     [ ...config.plugins
     , new webpack.HotModuleReplacementPlugin()
+    , new StatsPlugin('../src/webpack-stats.json')
     ]
   , devServer:
   { url: `http://${HOST}:${BUILD_SERVER_PORT}`
