@@ -1,0 +1,32 @@
+---
+- hosts: digitalocean
+  vars:
+    do_token: "{{ lookup('credstash', 'digital_ocean_api_key', region='us-east-1') }}"
+  tasks:
+    - name: ensure ssh key exists
+      user: >
+        name={{ ansible_user_id }}
+        generate_ssh_key=yes
+        ssh_key_file=.ssh/budgeteer-landing
+    - name: ensure key exists in DO account
+      digital_ocean: >
+        state=present
+        command=ssh
+        name=budgeteer-landing
+        ssh_pub_key={{ lookup('file', '~/.ssh/budgeteer-landing.pub') }}
+        api_token={{ do_token }}
+      register: ssh_key
+    - name: ensure droplet exists
+      digital_ocean: >-
+        state=present
+        command=droplet
+        name=budgeteer-landing-1
+        unique_name=yes
+        size_id=1gb
+        region_id=NYC2
+        image_id=centos-7-2-x64
+        ssh_key_ids={{ ssh_key.ssh_key.id }}
+        api_token={{ do_token }}
+      register: droplet
+
+    - debug: msg="IP is {{ droplet.droplet.ip_address }}"
