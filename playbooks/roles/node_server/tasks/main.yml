@@ -1,0 +1,14 @@
+- name: Download nodesource script
+  get_url: >-
+    url=https://rpm.nodesource.com/setup_4.x
+    dest=~/setup_node.sh
+- name: Setup nodesource repo
+  command: bash ~/setup_node.sh
+- name: Install node
+  yum: >-
+    name=nodejs
+    state=present
+- name: Install developer stack
+  yum: >-
+    name="@Development tools"
+    state=present
