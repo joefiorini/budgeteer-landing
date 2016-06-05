@@ -12,7 +12,7 @@
       digital_ocean: >
         state=present
         command=ssh
-        name=budgeteer-landing
+        name=budgeteer-landing-{{ ansible_nodename }}
         ssh_pub_key={{ lookup('file', '~/.ssh/budgeteer-landing.pub') }}
         api_token={{ do_token }}
       register: ssh_key
@@ -26,7 +26,77 @@
         region_id=NYC2
         image_id=centos-7-2-x64
         ssh_key_ids={{ ssh_key.ssh_key.id }}
+        wait=yes
         api_token={{ do_token }}
       register: droplet
-
     - debug: msg="IP is {{ droplet.droplet.ip_address }}"
+    - name: add droplet to inventory
+      add_host: name={{ droplet.droplet.ip_address }} group=droplets
+
+- hosts: droplets
+  tasks:
+    - name: after droplet create
+      debug: msg="After droplet create"
+    - name: create app user
+      user:
+        name=budgeteer-landing
+        groups=wheel
+        append=yes
+    - name: add ssh key to user
+      authorized_key: >-
+        user=budgeteer-landing
+        key="{{ lookup('file', '~/.ssh/budgeteer-landing.pub') }}"
+        state=present
+    - name: start firewalld
+      service: >-
+        name=firewalld
+        enabled=yes
+        state=started
+    - name: allow firewalld services
+      firewalld: >-
+        service="{{ item }}"
+        permanent=true
+        state=enabled
+        immediate=yes
+      with_items:
+        - http
+        - https
+        - ssh
+    - name: Setup NTP
+      command: timedatectl set-timezone UTC
+    - yum: >-
+        name=ntp
+        state=present
+    - service: >-
+        name=ntpd
+        enabled=yes
+        state=started
+    - name: Setup EPEL
+      yum: >-
+        name=epel-release
+        state=present
+    - name: Install nginx
+      yum: >-
+        name=nginx
+        state=present
+    - name: Start/enable nginx
+      service: >-
+        name=nginx
+        enabled=yes
+        state=started
+    - name: Download nodesource script
+      get_url: >-
+        url=https://rpm.nodesource.com/setup_4.x
+        dest=~/setup_node.sh
+    - name: Setup nodesource repo
+      command: bash ~/setup_node.sh
+    - name: Install node
+      yum: >-
+        name=nodejs
+        state=present
+    - name: Install developer stack
+      yum: >-
+        name="@Development tools"
+        state=present
+
+
