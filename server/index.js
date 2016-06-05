@@ -9,23 +9,19 @@ const server = new Express();
 
 global.optimizelyProps = {};
 
-const findJsAssets = ({ javascript }) => assets.filter(asset => asset.endsWith('.js'));
-const pluckStyles = ({ assets }) => Object.keys(assets).map(assetKey => assets[assetKey]._style)
-
-//         <style>
-//         ${pluckStyles(assets)}
-// </style>
-const template = ({ host, port, assets }) => content => `
+const template = ({ host, port, assets, assetsHost }) => content => `
 <html>
   <head>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300|Muli|Kameron' rel='stylesheet' type='text/css'>
+    ${assets.filter(file => file.endsWith('.css')).map(stylesheet =>
+      `<link rel='stylesheet' type='text/css' href='${assetsHost}/${stylesheet}' />`)}
   <script>
     window.optimizelyProps = {};
   </script>
   </head>
   <body>
     <main>${content}</main>
-    <script src="http://localhost:8001/${assets.filter(file => file.endsWith('.js'))}"></script>
+    <script src="${assetsHost}/${assets.filter(file => file.endsWith('.js'))}"></script>
   </body>
 </html>
 `;
@@ -56,9 +52,10 @@ export const runServer = (
   { host
   , port
   , assets
+  , assetsHost
   }) => {
   server.listen(port, host, () => console.log(`Running on port ${port}`));
-  const renderTemplate = template({ host, port, assets });
+  const renderTemplate = template({ host, port, assets, assetsHost });
 
   server.get('*', run({ renderTemplate, assets }));
 };

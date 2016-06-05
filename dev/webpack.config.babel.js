@@ -14,10 +14,6 @@ export default {
         , './'
         ]
       }
-  , output: {
-    ...config.output
-  , filename: 'bundle.js'
-  }
   , plugins:
     [ ...config.plugins
     , new webpack.HotModuleReplacementPlugin()
