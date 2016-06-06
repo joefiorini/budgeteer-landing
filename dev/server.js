@@ -32,7 +32,7 @@ waitOn(
       { host: process.env.HOST || 'localhost'
       , port: process.env.PORT || 8000
       , assets: assetsByChunkName.app
-      , assetsHost: 'http://localhost:8001/'
+      , assetsHost: 'http://localhost:8001'
       });
 
     running = true;

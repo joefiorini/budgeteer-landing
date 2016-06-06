@@ -1,19 +1,18 @@
-import { join, dirname } from 'path';
+import { join, dirname, resolve } from 'path';
 import findup from 'findup';
-
-// const resolve = require('path').resolve;
-
-// require('babel-register')(
-//   { babelrc: resolve('../.babelrc')
-//   }
-// );
+import dotenv from 'dotenv';
+import { runServer } from './';
 
 // For some reason __dirname resolves to / on current centos
 // server, but __filename is correct.
-require('dotenv').config(
-  { path: join(findup.sync(dirname(__filename), '.env'), '.env')
+dotenv.config(
+  { path: join(findup.sync(resolve('.'), '.env'), '.env')
   }
 );
 
-const server = require('./');
-server.runServer({ host: process.env.HOST, port: process.env.PORT, assets: ['bundle.js', 'styles.css'], assetsHost: process.env.ASSETS_HOST });
+runServer(
+  { host: process.env.HOST
+  , port: process.env.PORT
+  , assets: ['bundle.js', 'styles.css']
+  , assetsHost: process.env.ASSETS_HOST
+  });
