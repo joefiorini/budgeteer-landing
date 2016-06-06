@@ -1,0 +1,1 @@
+do_token: "{{ lookup('credstash', 'digital_ocean_api_key', region='us-east-1') }}"

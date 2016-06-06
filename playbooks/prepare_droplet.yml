@@ -1,0 +1,11 @@
+---
+- hosts: digitalocean
+  roles:
+    - droplet_prereqs
+    - droplet
+- hosts: droplets
+  handlers:
+    - name: Restart ssh
+      service: name=ssh state=restarted
+  roles:
+    - prepare_user

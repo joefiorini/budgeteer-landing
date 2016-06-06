@@ -1,0 +1,14 @@
+[Unit]
+Description=Budgeteer Landing Page Server Daemon
+After=network.target
+
+[Service]
+ExecStart=/bin/pm2 start /home/budgeteer-landing/node_modules/.bin/budgeteer-landing --name budgeteer-landing
+WorkingDirectory=/home/budgeteer-landing
+PIDFile=/home/budgeteer-landing/budgeteer-landing.pid
+ExecStop=/bin/pm2 stop budgeteer-landing
+Environment="HOME=/home/budgeteer-landing"
+User=budgeteer-landing
+
+[Install]
+WantedBy=multi-user.target

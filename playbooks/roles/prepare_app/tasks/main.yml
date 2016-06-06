@@ -1,0 +1,21 @@
+- name: install pm2
+  npm: >-
+    name=pm2
+    global=yes
+    state=latest
+- name: create systemd scripts
+  become: true
+  copy: >-
+    src=budgeteer-landing.service
+    dest=/usr/lib/systemd/system/budgeteer-landing.service
+- name: build app package
+  local_action: >-
+    command npm run pkg chdir=..
+- name: upload app package
+  copy: >-
+    src=../budgeteer-landing-1.0.0.tgz
+    dest=~/
+- name: install app package
+  npm: >-
+    name=~/budgeteer-landing-1.0.0.tgz
+    path=~/

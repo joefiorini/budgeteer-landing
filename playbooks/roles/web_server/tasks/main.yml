@@ -1,14 +1,5 @@
-- name: create app user
-  user:
-    name=budgeteer-landing
-    groups=wheel
-    append=yes
-- name: add ssh key to user
-  authorized_key: >-
-    user=budgeteer-landing
-    key="{{ lookup('file', '~/.ssh/budgeteer-landing.pub') }}"
-    state=present
 - name: start firewalld
+  become: true
   service: >-
     name=firewalld
     enabled=yes
