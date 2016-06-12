@@ -23,7 +23,7 @@ app.use(webpackHotMiddleware(compiler));
 
 const { HOST, PORT } = process.env;
 
-const statsPath = resolve(join(__dirname, '..', 'src', 'webpack-stats.json'));
+const statsPath = resolve(join(__dirname, '..', 'webpack-stats.json'));
 const writeStatsFile = stats =>
         writeFileSync(statsPath, JSON.stringify(stats.toJson()), { encoding: 'utf-8' });
 

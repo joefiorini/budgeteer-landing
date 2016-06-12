@@ -5,8 +5,7 @@ import waitOn from 'wait-on';
 import config from '../server/webpack.config.babel';
 import { runServer } from '../server';
 
-const basePath = resolve(__dirname, '../src');
-const statsPath = resolve(join(basePath, '..', 'webpack-stats.json'));
+const statsPath = resolve(join(__dirname, '..', 'webpack-stats.json'));
 
 dotenv.config();
 
