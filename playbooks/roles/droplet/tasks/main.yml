@@ -3,6 +3,7 @@
     state=present
     command=droplet
     name=budgeteer-landing-1
+    ssh_key_ids={{ ssh_key.ssh_key.id }}
     unique_name=yes
     size_id=1gb
     region_id=NYC2

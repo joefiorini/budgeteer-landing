@@ -1,0 +1,6 @@
+HOST=localhost
+PORT=8000
+DEFAULT_THEME=centered
+BABEL_ENV=backend
+ASSETS_HOST=assets.budgeteer.online
+NODE_ENV=production

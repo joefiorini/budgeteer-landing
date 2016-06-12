@@ -1,0 +1,6 @@
+- name: Build assets
+  command: npm run build:frontend
+- name: Upload assets to s3
+  command: aws s3 sync ../dist s3://{{ s3_bucket_name }}
+  with_fileglob:
+    - ../dist/*

@@ -1,12 +1,19 @@
 - hosts: digitalocean
   roles:
+    - droplet_prereqs
     - droplet
+  tags:
+    - frontend
+    - backend
 - hosts: droplets
   vars:
     ansible_user: budgeteer-landing
   roles:
-    - role: web_server
-      become: true
-    - role: node_server
-      become: true
-    - prepare_app
+    - role: deploy_assets
+      delegate_to: 127.0.0.1
+      tags:
+        - frontend
+    - role: deploy_app
+      tags:
+        - backend
+

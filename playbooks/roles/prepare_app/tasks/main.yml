@@ -2,20 +2,15 @@
   npm: >-
     name=pm2
     global=yes
-    state=latest
-- name: create systemd scripts
+    state=present
   become: true
-  copy: >-
-    src=budgeteer-landing.service
-    dest=/usr/lib/systemd/system/budgeteer-landing.service
-- name: build app package
-  local_action: >-
-    command npm run pkg chdir=..
-- name: upload app package
-  copy: >-
-    src=../budgeteer-landing-1.0.0.tgz
-    dest=~/
-- name: install app package
-  npm: >-
-    name=~/budgeteer-landing-1.0.0.tgz
-    path=~/
+- name: upload nginx config
+  copy: src=budgeteer-landing.nginx.conf dest=/etc/nginx/conf.d/budgeteer-landing.conf
+  become: true
+- name: restart nginx
+  service: >-
+    name=nginx
+    state=restarted
+  become: true
+- name: upload .env file
+  copy: src=dotenv dest=~/.env

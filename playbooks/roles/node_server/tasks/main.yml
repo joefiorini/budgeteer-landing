@@ -8,6 +8,12 @@
   yum: >-
     name=nodejs
     state=present
+- name: update npm
+  npm: >-
+    name=npm
+    global=yes
+    state=latest
+  become: yes
 - name: Install developer stack
   yum: >-
     name="@Development tools"

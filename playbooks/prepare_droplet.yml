@@ -6,6 +6,6 @@
 - hosts: droplets
   handlers:
     - name: Restart ssh
-      service: name=ssh state=restarted
+      service: name=sshd state=restarted
   roles:
     - prepare_user

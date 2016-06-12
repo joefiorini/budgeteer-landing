@@ -1,0 +1,13 @@
+- hosts: digitalocean
+  roles:
+    - droplet_prereqs
+    - droplet
+- hosts: droplets
+  vars:
+    ansible_user: budgeteer-landing
+  roles:
+    - role: web_server
+      become: true
+    - role: node_server
+      become: true
+    - prepare_app

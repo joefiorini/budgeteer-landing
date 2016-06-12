@@ -5,7 +5,8 @@
   "main": "index.js",
   "bin": "./bin/budgeteer-landing",
   "files": [
-    "bin"
+    "bin",
+    "webpack-stats.json"
   ],
   "scripts": {
     "prestart": "npm prune",

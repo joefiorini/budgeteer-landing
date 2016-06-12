@@ -38,18 +38,23 @@ class ExecutableOutputPlugin {
 export default
   { ...config
   , entry: '../server/boot.js'
+  , devtool: 'sourcemap'
   , output:
     { path: './bin'
     , filename: 'budgeteer-landing'
     }
   , plugins:
     // TODO: Find a better way to disable ExtractTextPlugin here
-    [ ...config.plugins.filter(plugin => !(plugin instanceof ExtractTextPlugin))
+    [ ...config.plugins.filter(plugin => !(plugin instanceof ExtractTextPlugin || plugin instanceof webpack.EnvironmentPlugin))
     , new webpack.BannerPlugin('require("source-map-support").install();',
                               { raw: true, entryOnly: false })
     , new ExecutableOutputPlugin({ processor: ['/usr/bin/env node'] })
     , new ExtractTextPlugin('styles.css', { disable: true })
     ]
   , target: 'node'
+  , node:
+    { __dirname: false
+    , __filename: false
+    }
   , externals: nodeModules
   };

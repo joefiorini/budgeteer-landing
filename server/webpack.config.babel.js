@@ -6,6 +6,7 @@ import lost from 'lost';
 import pxtorem from 'postcss-pxtorem';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import StatsPlugin from 'stats-webpack-plugin';
 
 const dotenvPath = resolve(__dirname, '../.env');
 
@@ -16,13 +17,24 @@ require('dotenv').config({
 const { HOST = '0.0.0.0', BUILD_SERVER_PORT = 8001 } = process.env;
 const serverAddress = `http://${HOST}:${BUILD_SERVER_PORT}/`;
 
+process.env.NODE_ENV = 'production';
+
+function log(o) {
+  console.log(o);
+  return o;
+}
 export default {
   context: resolve(join(__dirname, '../src'))
 , target: 'web'
 , devtool: 'sourcemap'
+, entry:
+  { app:
+    [ './'
+    ]
+  }
 , output:
-    { path: resolve('./dist')
-    , filename: 'bundle.js'
+    { path: log(resolve('./dist'))
+    , filename: 'bundle.[hash].js'
     , hash: true
     , publicPath: serverAddress
     }
@@ -39,8 +51,9 @@ export default {
       ]
     }
 , plugins:
-    [ new webpack.EnvironmentPlugin(Object.keys(process.env))
-    , new ExtractTextPlugin('styles.css')
+    [ new ExtractTextPlugin('styles.[hash].css')
+    , new StatsPlugin('../webpack-stats.json')
+    , new webpack.EnvironmentPlugin(Object.keys(process.env))
     ]
   , postcss:
   () => [ cssnext, lost, pxtorem({ propWhiteList: [] }), values ]

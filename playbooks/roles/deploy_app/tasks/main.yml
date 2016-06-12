@@ -1,0 +1,16 @@
+- name: build app package
+  local_action: >-
+    command npm run pkg chdir=..
+- name: upload app package
+  copy: >-
+    src=../budgeteer-landing-1.0.0.tgz
+    dest=~/
+- name: install app package
+  npm: >-
+    name=~/budgeteer-landing-1.0.0.tgz
+    path=~/
+- name: delete all pm2 apps
+  command: pm2 delete all
+  ignore_errors: true
+- name: start pm2
+  command: pm2 start ~/node_modules/.bin/budgeteer-landing
