@@ -25,6 +25,7 @@
 
 .title {
   margin: 0;
+  font-size: 26px;
 }
 
 .logo,
@@ -34,4 +35,5 @@
 
 .headline {
   composes: medium from '../../grid.css';
+  font-size: 32px;
 }

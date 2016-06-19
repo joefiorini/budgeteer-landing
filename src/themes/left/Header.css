@@ -1,3 +1,5 @@
+@value --medium-viewport, --large-viewport from '../../grid.css';
+
 :root {
   --logoSize: 125px;
 }
@@ -6,22 +8,45 @@
   composes: wrapper from '../../grid.css';
 
   display: flex;
-  flex-flow: column wrap;
   justify-content: space-between;
+  flex-flow: row wrap;
   position: relative;
   /* align-items: center; */
   margin: 0 auto;
-  height: 205px;
-  width: 625px;
+  height: 157px;
+  width: 100vw;
+
+  @media --medium-viewport , --large-viewport {
+    flex-flow: column nowrap;
+    height: 205px;
+    flex-wrap: wrap;
+    width: 625px;
+  }
 }
 
 .logo {
-  flex: 0 0 100%;
   order: 1;
   width: auto;
-  height: var(--logoSize);
-  margin-left: auto;
-  margin-right: 24px;
+  height: 50px;
+  margin-right: auto;
+  margin-top: 15px;
+
+  @media --medium-viewport , --large-viewport {
+    flex: 0 0 100%;
+    margin-left: auto;
+    margin-right: 24px;
+    margin-top: 0;
+    height: var(--logoSize);
+  }
+}
+
+.logo,
+.icons {
+  margin-top: 15px;
+
+  @media --medium-viewport , --large-viewport {
+    margin-top: 0;
+  }
 }
 
 .title,
@@ -30,20 +55,38 @@
 }
 
 .title {
-  font-size: 20px;
+  font-size: 12px;
   text-transform: uppercase;
+
+  @media --medium-viewport , --large-viewport {
+    font-size: 20px;
+    flex: 0 0 61%;
+  }
 }
 
 .headline {
   order: 4;
-  flex: 0 0 61%;
+  flex: 1 1 auto;
+  font-size: 18px;
+  margin-bottom: 15px;
+
+  @media --medium-viewport , --large-viewport {
+    font-size: 32px;
+    flex: 0 0 61%;
+  }
 }
 
 .titleLink {
-  order: 2;
-  flex: 0 0 15%;
-  height: 28px;
-  margin-top: auto;
+  order: 3;
+  flex: 1 1 auto;
+  width: 100%;
+
+  @media --medium-viewport , --large-viewport {
+    height: 28px;
+    margin-top: auto;
+    width: initial;
+    flex: 0 0 15%;
+  }
 
   &:visited {
     color: inherit;
@@ -51,8 +94,13 @@
 }
 
 .icons {
-  order: 3;
-  position: absolute;
-  top: 10px;
-  right: -250px;
+  order: 2;
+  margin-left: auto;
+
+  @media --medium-viewport , --large-viewport {
+    position: absolute;
+    margin-left: 0;
+    top: 10px;
+    right: -250px;
+  }
 }

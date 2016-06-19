@@ -1,3 +1,5 @@
+@value --medium-viewport, --large-viewport from '../../grid.css';
+
 .container {
   composes: wrapper from '../../grid.css';
 
@@ -8,12 +10,18 @@
   align-items: center;
 
   min-height: 440px;
+
+  padding: 5px 0;
 }
 
 .benefit {
-  flex: 0 1 45%;
+  margin: 5px 0;
 
-  &:last-child {
-    flex-basis: 55%;
+  @media --medium-viewport , --large-viewport {
+    flex: 0 1 45%;
+
+    &:last-child {
+      flex-basis: 55%;
+    }
   }
 }
