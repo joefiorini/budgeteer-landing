@@ -1,3 +1,6 @@
+@value --large-viewport: (min-width: 769px);
+@value --medium-viewport: (min-width: 667px) and (max-width: 772px);
+
 :root {
   --full-width: 1120;
   --ratio: 1.61803398875;

@@ -17,11 +17,13 @@
   font-size: 24px;
   color: white;
   z-index: 2;
+  margin: 0;
 }
 
 .coin {
   position: absolute;
-  height: 100%;
+  top: -5px;
+  height: 110%;
   transform: rotate(-35deg);
   width: auto;
   & g {

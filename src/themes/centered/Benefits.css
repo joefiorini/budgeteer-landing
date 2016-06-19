@@ -1,28 +1,51 @@
+@value --medium-viewport, --large-viewport from '../../grid.css';
+
 .container {
   composes: wrapper from '../../grid.css';
 
   display: flex;
-  flex-flow: column wrap;
-  height: 435px;
   justify-content: space-between;
-  margin-top: 35px;
-  margin-bottom: 100px;
+
+  margin: 25px 0;
+
+  @media --medium-viewport , --large-viewport {
+    flex-flow: column wrap;
+    height: 435px;
+    margin: 35px 0;
+  }
+
+  @media --medium-viewport {
+    height: 515px;
+  }
 }
 
 .benefit {
-  width: 425px;
   text-align: left;
+  margin: 10px 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &:nth-child(4),
   &:nth-child(5) {
     align-self: flex-end;
   }
 
-  &:nth-child(4) {
-    margin-top: 72px;
-  }
+  @media --medium-viewport , --large-viewport {
+    margin: 0;
+    width: 40%;
 
-  &:nth-child(5) {
-    margin-bottom: 72px;
+    &:nth-child(4) {
+      margin-top: 72px;
+    }
+
+    &:nth-child(5) {
+      margin-bottom: 72px;
+    }
   }
 }
