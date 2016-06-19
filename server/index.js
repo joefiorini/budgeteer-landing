@@ -22,6 +22,7 @@ const template = ({ host, port, assets, assetsHost }) => content => `
   </head>
   <body>
     <main>${content}</main>
+    <script src="https://cdn.optimizely.com/js/6292400459.js"></script>
     <script src="${assetsHost}/${assets.filter(file => file.endsWith('.js'))}"></script>
   </body>
 </html>
