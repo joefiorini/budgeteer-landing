@@ -18,7 +18,7 @@ export default {
         [ 'react-hot-loader/patch'
         , `webpack-hot-middleware/client?path=${config.output.publicPath}__webpack_hmr`
         , 'webpack/hot/only-dev-server'
-        , ...config.entry.app
+        , './'
         ]
       }
   , plugins:

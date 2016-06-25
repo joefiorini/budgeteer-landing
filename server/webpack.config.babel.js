@@ -27,17 +27,12 @@ export default {
   context: resolve(join(__dirname, '../src'))
 , target: 'web'
 , devtool: 'sourcemap'
-, entry:
-  { app:
-    [ './'
-    ]
+  , output:
+  { path: log(resolve('./dist'))
+  , filename: 'bundle.[hash].js'
+  , hash: true
+  , publicPath: serverAddress
   }
-, output:
-    { path: log(resolve('./dist'))
-    , filename: 'bundle.[hash].js'
-    , hash: true
-    , publicPath: serverAddress
-    }
 , module:
     { loaders:
       [ { test: /\.js$/, loader: 'babel', query: { babelrc: true } }
