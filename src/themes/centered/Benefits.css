@@ -6,12 +6,12 @@
   display: flex;
   justify-content: space-between;
 
-  margin: 25px 0;
+  margin: 25px auto;
 
   @media --medium-viewport , --large-viewport {
     flex-flow: column wrap;
     height: 435px;
-    margin: 35px 0;
+    margin: 35px auto;
   }
 
   @media --medium-viewport {
