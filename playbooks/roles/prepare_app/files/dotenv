@@ -4,3 +4,5 @@ DEFAULT_THEME=centered
 BABEL_ENV=backend
 ASSETS_HOST=assets.budgeteer.online
 NODE_ENV=production
+OPTIMIZELY_ENABLED=true
+GOOGLE_ANALYTICS_ENABLED=true

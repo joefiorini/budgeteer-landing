@@ -1,4 +1,5 @@
 import React from 'react';
+import 'babel-polyfill';
 import { renderToString } from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
 import Express from 'express';
@@ -9,7 +10,22 @@ const server = new Express();
 
 global.optimizelyProps = {};
 
-const template = ({ host, port, assets, assetsHost }) => content => `
+const gaTag = `<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79840063-1', 'auto');
+  ga('send', 'pageview');
+
+</script>`;
+
+const optimizelyTag = '<script src="https://cdn.optimizely.com/js/6292400459.js"></script>';
+
+const includeIntegration = (name, tag, enabled) => (enabled.includes(name) ? tag : '');
+
+const template = ({ assets, assetsHost, enabledIntegrations }) => content => `
 <html>
   <head>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,300|Muli|Kameron" rel="stylesheet" type="text/css">
@@ -22,17 +38,8 @@ const template = ({ host, port, assets, assetsHost }) => content => `
   </head>
   <body>
     <main>${content}</main>
-    <script src="https://cdn.optimizely.com/js/6292400459.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-79840063-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
+    ${includeIntegration('optimizely', optimizelyTag, enabledIntegrations)}
+    ${includeIntegration('googleAnalytics', gaTag, enabledIntegrations)}
     <script src="${assetsHost}/${assets.filter(file => file.endsWith('.js'))}"></script>
   </body>
 </html>
@@ -60,6 +67,19 @@ const run = ({ renderTemplate }) => (req, res) => {
   );
 };
 
+function getEnabledIntegrations() {
+  const integrations =
+    [ 'optimizely'
+    , 'googleAnalytics'
+    ];
+
+  // Converts optimizely to OPTIMIZELY or googleAnalytics to GOOGLE_ANALYTICS
+  const toEnvVar = name => name.toUpperCase().replace(/([a-z])([A-Z])/, '$1_$2');
+  const isEnvEnabled = int => process.env[`${toEnvVar(int)}_ENABLED`];
+
+  return integrations.filter(int => isEnvEnabled(int));
+}
+
 export const runServer = (
   { host
   , port
@@ -67,7 +87,8 @@ export const runServer = (
   , assetsHost
   }) => {
   server.listen(port, host, () => console.log(`Running on port ${port}`));
-  const renderTemplate = template({ host, port, assets, assetsHost });
+  const enabledIntegrations = getEnabledIntegrations();
+  const renderTemplate = template({ host, port, assets, assetsHost, enabledIntegrations });
 
   server.get('*', run({ renderTemplate, assets }));
 };
