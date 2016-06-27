@@ -2,12 +2,27 @@ import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './App';
+import EventEmitter from 'events';
+import getTheme from './themes';
+
+const emitter = new EventEmitter();
+
+global.emit = emitter.emit.bind(emitter);
+
+emitter.once('onThemeChange', theme => doRender(theme));
 
 const root = document.querySelector('main');
-render(
-  <AppContainer>< App /></AppContainer>,
-  root
-);
+
+function doRender(theme) {
+  const themeName = getTheme(theme, global.location.query || {});
+
+  render(
+    <AppContainer><App theme={themeName} /></AppContainer>,
+    root
+  );
+}
+
+doRender();
 
 if (module.hot) {
   /* eslint-disable global-require */
