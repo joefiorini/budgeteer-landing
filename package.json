@@ -16,7 +16,7 @@
     "start:dev": "npm install && concurrently --kill-others \"npm run build-server\" \"npm run dev-server\"",
     "start:prod": "node server/boot.js",
     "build:backend": "webpack --config server/webpack.config.server.babel.js",
-    "build:frontend": "BABEL_ENV=frontend $(npm bin)/webpack --config server/webpack.config.babel.js",
+    "build:frontend": "npm run clean && BABEL_ENV=frontend $(npm bin)/webpack --config server/webpack.config.babel.js",
     "build-server": "BABEL_ENV=frontend node dev/webpack.boot.js",
     "dev-server": "BABEL_ENV=backend node dev/boot.js",
     "test": "eslint {src,dev,server}"

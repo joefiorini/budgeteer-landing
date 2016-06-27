@@ -1,28 +1,30 @@
 import webpack from 'webpack';
-import config from '../server/webpack.config.babel';
+import { resolve } from 'path';
+import config from '../config/webpack.config.babel';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const { HOST = '0.0.0.0', BUILD_SERVER_PORT = 8001 } = process.env;
+const serverAddress = `http://${HOST}:${BUILD_SERVER_PORT}/`;
 
 process.env.NODE_ENV = 'development';
 
 export default {
   ...config
   , output:
-    { ...config.output
+    { path: resolve('./dist')
     , filename: 'bundle.js'
-    , hash: false
+    , publicPath: serverAddress
     }
   , entry:
       { app:
         [ 'react-hot-loader/patch'
-        , `webpack-hot-middleware/client?path=${config.output.publicPath}__webpack_hmr`
+        , `webpack-hot-middleware/client?path=${serverAddress}__webpack_hmr`
         , 'webpack/hot/only-dev-server'
         , './'
         ]
       }
   , plugins:
-  [   ...config.plugins.filter(plugin => !(plugin instanceof ExtractTextPlugin))
+    [ ...config.plugins.filter(plugin => !(plugin instanceof ExtractTextPlugin))
     , new ExtractTextPlugin('styles.css')
     , new webpack.HotModuleReplacementPlugin()
     ]

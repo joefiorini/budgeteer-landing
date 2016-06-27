@@ -9,7 +9,7 @@
       "backend": {
         "plugins": [
           [ "webpack-loaders",
-            { "config": "./server/webpack.config.babel.js"
+            { "config": "./config/webpack.config.babel.js"
             , "verbose": false
             }
           ]

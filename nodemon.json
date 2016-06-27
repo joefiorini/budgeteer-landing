@@ -5,6 +5,7 @@
   ],
   "watch": [
     "package.json",
+    "config/*.js",
     "dev/*.js",
     "server/*.js",
     "src/server.js",

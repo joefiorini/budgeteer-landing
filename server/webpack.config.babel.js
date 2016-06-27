@@ -1,55 +1,19 @@
-import { resolve, join } from 'path';
-import cssnext from 'postcss-cssnext';
-import autoreset from 'postcss-autoreset';
-import values from 'postcss-modules-values';
-import lost from 'lost';
-import pxtorem from 'postcss-pxtorem';
-import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import StatsPlugin from 'stats-webpack-plugin';
+import { resolve } from 'path';
+import config from '../config/webpack.config.babel';
 
-const dotenvPath = resolve(__dirname, '../.env');
+const serverAddress = `http://${process.env.ASSETS_HOST}/`;
 
-require('dotenv').config({
-  path: dotenvPath,
-});
-
-const { HOST = '0.0.0.0', BUILD_SERVER_PORT = 8001 } = process.env;
-const serverAddress = `http://${HOST}:${BUILD_SERVER_PORT}/`;
-
-process.env.NODE_ENV = 'production';
-
-function log(o) {
-  console.log(o);
-  return o;
-}
 export default {
-  context: resolve(join(__dirname, '../src'))
-, target: 'web'
-, devtool: 'sourcemap'
-  , output:
-  { path: log(resolve('./dist'))
+  ...config
+, entry:
+    { app:
+      [ './'
+      ]
+    }
+, output:
+  { path: resolve('./dist')
   , filename: 'bundle.[hash].js'
   , hash: true
   , publicPath: serverAddress
   }
-, module:
-    { loaders:
-      [ { test: /\.js$/, loader: 'babel', query: { babelrc: true } }
-      , { test: /\.svg$/
-        , loader: 'svg!svgo'
-        }
-        , { test: /\.css$/
-        , loader: ExtractTextPlugin.extract('null', `css?modules&importLoaders=1
-                &localIdentName=[name]__[local]___[hash:base64:5]!postcss`)
-        }
-      ]
-    }
-, plugins:
-    [ new ExtractTextPlugin('styles.[hash].css')
-    , new StatsPlugin('../webpack-stats.json')
-    , new webpack.EnvironmentPlugin(Object.keys(process.env))
-    ]
-  , postcss:
-  () => [ cssnext, lost, pxtorem({ propWhiteList: [] }), values ]
 };
