@@ -15,7 +15,7 @@ global.emit = emitter.emit.bind(emitter);
 
 const root = document.querySelector('main');
 
-function doRender({ theme, AppComponent = App }) {
+function doRender({ theme, AppComponent = App } = {}) {
   const url = parseUrl(global.location.href, true);
   const themeName = getTheme(theme, url.query);
   debug(`Loaded theme ${themeName}`);
