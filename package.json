@@ -19,7 +19,8 @@
     "build:frontend": "npm run clean && BABEL_ENV=frontend $(npm bin)/webpack --config server/webpack.config.babel.js",
     "build-server": "BABEL_ENV=frontend node dev/webpack.boot.js",
     "dev-server": "BABEL_ENV=backend node dev/boot.js",
-    "test": "eslint {src,dev,server}"
+    "test": "eslint {src,dev,server}",
+    "deploy": "cd playbooks && ansible-playbook deploy_app.yml"
   },
   "repository": {
     "type": "git",
