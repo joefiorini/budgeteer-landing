@@ -74,7 +74,7 @@ function getEnabledIntegrations() {
     ];
 
   // Converts optimizely to OPTIMIZELY or googleAnalytics to GOOGLE_ANALYTICS
-  const toEnvVar = name => name.toUpperCase().replace(/([a-z])([A-Z])/, '$1_$2');
+  const toEnvVar = name => name.replace(/([a-z])([A-Z])/, '$1_$2').toUpperCase();
   const isEnvEnabled = int => process.env[`${toEnvVar(int)}_ENABLED`];
 
   return integrations.filter(int => isEnvEnabled(int));
